@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>Assessment 1</title>
+</head>
+<body>
+  <h1>The Wonders of Chips!</h1>
+  <h2>We tell you about how much we love chips!</h2>
+  <h3>About</h3>
+  <p style = "background-color:blue">Since about five minutes ago, we have been broadcasting our <strong>adoration</strong> for chips. We are absolutely <em>ecstatic</em> to share with you the wonders of <ins>every type of chip!</ins></p>
+  <p style = "color:red">In the coming months, we hope to roll out new gear to our employees, including magnificent <a href = "https://www.apple.com/" target = "_blank">Apple Computers</a> for the intense technical labor that they will be completing.</p>
+  <p style = "text-align:center">Below you will find an image to help inspire your love for chips!</p>
+  <p><img src = "chip.jpg" style = "width: 200px; height: 150px"></p>
+  <table style = "width:100%">
+    <tr>
+      <th style = "text-align:left">Name</th>
+      <th style = "text-align:left">Gender</th>
+      <th style = "text-align:left">Age</th>
+    </tr>
+    <tr>
+      <td>Karl</td>
+      <td>Male</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <td>Natalie</td>
+      <td>Female</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <td>Maria</td>
+      <td>Female</td>
+      <td>32</td>
+    </tr>
+  </table>
+  <ol type = "a">
+    <li>Alpha</li>
+    <li>Bravo</li>
+    <li>Charlie</li>
+  </ol>
+</body>
+  
+</html>
