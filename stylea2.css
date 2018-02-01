@@ -1,0 +1,26 @@
+#watermelon {
+    color:red;
+    font-weight:bold;
+    text-align:center;
+    border:2px solid blue;
+}
+.milk {
+    background-color:black;
+    color:white;
+    text-align:left;
+    border:2px solid red;
+    padding: 5px;
+    border-radius: 90px;
+}
+#colored {
+    color:#ffcc00;
+}
+a {
+    color:blue;
+}
+a:visited {
+    color:green;
+}
+a:hover{
+    color:orange;
+}
