@@ -1,0 +1,40 @@
+body {
+    font-family: calibri, "Times New Roman";
+    font-size: 14px
+    margin: 20px; 25px;
+}
+.formal {
+    text-align:left;
+}
+.normal {
+    text-align:center;
+}
+a {
+    color: rgb(251, 189, 0)
+    }
+    
+a:hover {
+    color:black
+    }
+.redbold {
+    font-weight: bold;
+    color: red;
+}
+#address {
+    border: 3px solid black;
+    padding: 5px;
+    width: 150px;
+}
+.italic {
+    font-style: italic;
+}
+.insert {
+    text-decoration: underline;
+}
+.button {
+    background-color:red;
+    color:white;
+    text-decoration: none;
+    padding:5px;
+    font-size:14px;
+}
