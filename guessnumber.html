@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Guess the Number! by Paris Floyd</title>
+    </head>
+    <body>
+        <h1>Thanks for playing!</h1>
+        <script>
+        var number = Math.floor((Math.random() * 10)+1);
+        var tries = 0;
+        var answer;
+        while (answer != number){
+            tries = tries + 1;
+            answer = prompt("Guess what number I\'m thinking of (from 1 to 10):", "#");
+            if (answer != number){
+                alert("Wrong! Guess again!");
+            }
+        }
+            
+        if (answer = number){
+            alert("Correct! It took you " + tries + " tries to guess it correctly!");
+        }
+        </script>
+    </body>
+    
+</html>
