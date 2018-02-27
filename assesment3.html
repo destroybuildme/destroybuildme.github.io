@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assessment 3</title>
+    </head>
+    <body>
+        <h1 style = color:blue>Welcome, user!</h1>
+    <script>
+        var pword = "ilovekarl";
+        var guess;
+        function main() {
+            while (guess != pword){
+                guess = prompt("Please enter your password:")
+                if (guess == pword){
+                    alert("Succesful. Logging in...");
+                }
+                else{
+                    alert("Incorrect password. Try again.");
+                }
+            }
+        }
+        main();
+    </script>
+    </body>
+</html>
