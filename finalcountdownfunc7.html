@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Trivial Trivia</title>
+        <style type = "text/css">
+            body{
+                font-family:sans-serif;
+                background-color:#ffda90;
+            }
+            #welcome{
+                font-family: "Impact", "Times New Roman";
+                font-size: 32px;
+                color: crimson;
+                text-align: center;
+                padding: 5px;
+                border: 5px groove orange;
+                background-color:greenyellow;
+            }
+            .intro{
+                text-align: center;
+            }
+            #trophy{
+                text-align:center;
+            }
+            #display{
+                text-align:left;
+                font-weight:bold;
+            }
+            #displaytime{
+                color:green;
+                font-size: 18px;
+            }
+            #button1{
+                text-align:left;
+                color:blueviolet;
+            }
+            #button2{
+                text-align:left;
+                color:crimson;
+            }
+            #button3{
+                text-align:left;
+                color:chocolate;
+            }
+            #button4{
+                text-align:left;
+                color:forestgreen;
+            }
+            #besttimes{
+                font-size: 14px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <p id = "welcome">Welcome to Trivial Trivia!</p>
+        <p class = "intro">You may take great tests throughout your life, but this one will be by far the most important and intense!</p>
+        <p class = "intro">This trivia game will require you to answer 10 questions correctly in 60 seconds. No cheating...<br></p>
+        <p id = "gesture">Click the button below to begin!</p>
+        <button id = "startgame">Start</button>
+        <div id = "displaytime">60</div>
+        <div id = "display">Questions will appear here.</div>
+        <button id = "button1">A</button>
+        <button id = "button2">B</button>
+        <button id = "button3">C</button>
+        <button id = "button4">D</button>
+        <div id = "announce"></div>
+        <div id = "besttimes"></div>
+        <img id = "displayimg">
+        <script>
+            var left = 0;
+            var timeleft = 0;
+            var length = 60000;
+            var answer;
+            var countdown;
+            var x = document.getElementById("display");
+            var A = document.getElementById("button1");
+            var B = document.getElementById("button2");
+            var C = document.getElementById("button3");
+            var D = document.getElementById("button4");
+            var questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+            var correctans = -1;
+            var times = [];
+            var picture = document.getElementById("displayimg");
+            
+            function timegameover(){
+                x.innerHTML = "Time's up, Game Over!";
+                document.getElementById("startgame").innerHTML = "Retry";
+            }
+            function gameover(){
+                x.innerHTML = "Wrong! Game Over!";
+                document.getElementById("startgame").innerHTML = "Retry";
+                A.onclick = function(){
+                    A.innerHTML = "Nope!";
+                }
+                B.onclick = function(){
+                    B.innerHTML = "Nope!";
+                }
+                C.onclick = function(){
+                    C.innerHTML = "Nope!";
+                }
+                D.onclick = function(){
+                    D.innerHTML = "Nope!";
+                }
+                clearInterval(countdown);
+                picture.setAttribute("src", "redx.png");
+                picture.setAttribute("width", "100");
+                picture.setAttribute("height", "100");
+            }
+            function winner(){
+                x.innerHTML = "YOU WIN! Given how unusual these questions are, you must have used Google at least once. So you've broken the \"no cheating\" rule. Do you really win?";
+                times.push((length - timeleft)/1000);
+                times.sort(function(a, b){return a - b});
+                document.getElementById("besttimes").innerHTML = times;
+                document.getElementById("startgame").innerHTML = "Improve";
+                A.onclick = function(){
+                    A.innerHTML = "Restart";
+                }
+                B.onclick = function(){
+                    B.innerHTML = "Restart!";
+                }
+                C.onclick = function(){
+                    C.innerHTML = "Restart.";
+                }
+                D.onclick = function(){
+                    D.innerHTML = "Restart...";
+                }
+                clearInterval(countdown);
+                picture.setAttribute("src", "Trophy.gif");
+                picture.setAttribute("width", "256");
+                picture.setAttribute("height", "256");
+            }
+            function createrandom(){
+                return Math.floor(Math.random() * 10);
+            }
+            function qpick(){
+                correctans = correctans + 1;
+                if (correctans == 10){
+                    document.getElementById("announce").innerHTML = "Your best elapsed times (seconds):";
+                    winner();
+                } else{
+                    randnum = createrandom();
+                    op = questions[randnum];
+                    questions[randnum] = 0;
+                    while (op == 0){
+                        randnum = createrandom();
+                        op = questions[randnum];
+                        questions[randnum] = 0;
+                    }
+                    op();
+                }
+                
+            }
+            function q1(){
+                x.innerHTML = (10-correctans) + ": What is the capital of Turkemnistan?";
+                A.innerHTML = "Asmara";
+                B.innerHTML = "Cayenne";
+                C.innerHTML = "Ashgabat";
+                D.innerHTML = "Wellington";
+                picture.setAttribute("src", "turkemnistan.png");
+                picture.setAttribute("width", "156");
+                picture.setAttribute("height", "102");
+                C.onclick = function(){
+                    qpick();  
+                };
+                A.onclick = function(){
+                    gameover();
+                }
+                B.onclick = function(){
+                    gameover();
+                }
+                D.onclick = function(){
+                    gameover();
+                }
+            }
+            function q2(){
+                x.innerHTML = (10-correctans) + ": How many whiskers are present on an average cat's muzzle?";
+                A.innerHTML = "10";
+                B.innerHTML = "12";
+                C.innerHTML = "18";
+                D.innerHTML = "24";
+                picture.setAttribute("src", "cathead.png");
+                picture.setAttribute("width", "100");
+                picture.setAttribute("height", "100");
+                A.onclick = function(){
+                    gameover();  
+                };
+                B.onclick = function(){
+                    gameover();
+                }
+                C.onclick = function(){
+                    gameover();
+                }
+                D.onclick = function(){
+                    qpick();
+                }
+            }
+            function q3(){
+                x.innerHTML = (10-correctans) + ": In what year was Margherita of Savoy served the first margherita pizza?";
+                A.innerHTML = "1562";
+                B.innerHTML = "1889";
+                C.innerHTML = "1937";
+                D.innerHTML = "2000";
+                picture.setAttribute("src", "pizza.jpg");
+                picture.setAttribute("width", "100");
+                picture.setAttribute("height", "100");
+                A.onclick = function(){
+                    gameover();  
+                }
+                B.onclick = function(){
+                    qpick();
+                }
+                C.onclick = function(){
+                    gameover();
+                }
+                D.onclick = function(){
+                    gameover();
+                }
+            }
+            function q4(){
+                x.innerHTML = (10-correctans) + ": What is the diameter of the planet Jupiter in miles?";
+                A.innerHTML = "86,881";
+                B.innerHTML = "7,917";
+                C.innerHTML = "864,337";
+                D.innerHTML = "30,599";
+                picture.setAttribute("src", "jupiter.png");
+                picture.setAttribute("width", "100");
+                picture.setAttribute("height", "100");
+                A.onclick = function(){
+                    qpick();  
+                }
+                B.onclick = function(){
+                    gameover();
+                }
+                C.onclick = function(){
+                    gameover();
+                }
+                D.onclick = function(){
+                    gameover();
+                }
+            }
+            function q5(){
+                x.innerHTML = (10-correctans) + ": Who invented \"Silly Bandz\"?";
+                A.innerHTML = "James Dashner";
+                B.innerHTML = "Tim Eagleston";
+                C.innerHTML = "Robert Carrier";
+                D.innerHTML = "Robert Croak";
+                picture.setAttribute("src", "bandz.jpg");
+                picture.setAttribute("width", "100");
+                picture.setAttribute("height", "100");
+                A.onclick = function(){
+                    gameover();  
+                }
+                B.onclick = function(){
+                    gameover();
+                }
+                C.onclick = function(){
+                    gameover();
+                }
+                D.onclick = function(){
+                    qpick();
+                }
+            }
+            function q6(){
+                x.innerHTML = (10-correctans) + ": What is the top speed of a dolphin in miles per hour?";
+                A.innerHTML = "240";
+                B.innerHTML = "37";
+                C.innerHTML = "75";
+                D.innerHTML = "25";
+                picture.setAttribute("src", "dolphin.png");
+                picture.setAttribute("width", "100");
+                picture.setAttribute("height", "100");
+                A.onclick = function(){
+                    gameover();  
+                }
+                B.onclick = function(){
+                    qpick();
+                }
+                C.onclick = function(){
+                    gameover();
+                }
+                D.onclick = function(){
+                    gameover();
+                }
+            }
+            function q7(){
+                x.innerHTML = (10-correctans) + ": Which region features the gayageum/kayagum instrument?";
+                A.innerHTML = "Korea";
+                B.innerHTML = "India";
+                C.innerHTML = "South Africa";
+                D.innerHTML = "Australia";
+                picture.setAttribute("src", "gayageum.png");
+                picture.setAttribute("width", "100");
+                picture.setAttribute("height", "100");
+                A.onclick = function(){
+                    qpick();  
+                }
+                B.onclick = function(){
+                    gameover();
+                }
+                C.onclick = function(){
+                    gameover();
+                }
+                D.onclick = function(){
+                    gameover();
+                }
+            }
+            function q8(){
+                x.innerHTML = (10-correctans) + ": What is the Russian word for banana?";
+                A.innerHTML = "μπανάνα";
+                B.innerHTML = "ចេក";
+                C.innerHTML = "банан";
+                D.innerHTML = "բանան";
+                picture.setAttribute("src", "banana.png");
+                picture.setAttribute("width", "100");
+                picture.setAttribute("height", "100");
+                A.onclick = function(){
+                    gameover();  
+                }
+                B.onclick = function(){
+                    gameover();
+                }
+                C.onclick = function(){
+                    qpick();
+                }
+                D.onclick = function(){
+                    gameover();
+                }
+            }
+            function q9(){
+                x.innerHTML = (10-correctans) + ": What is the Phonetic Alphabet equivalent for \"N\"?";
+                A.innerHTML = "Nickel";
+                B.innerHTML = "Newton";
+                C.innerHTML = "Nancy";
+                D.innerHTML = "New York";
+                picture.setAttribute("src", "n.jpg");
+                picture.setAttribute("width", "100");
+                picture.setAttribute("height", "100");
+                A.onclick = function(){
+                    gameover();  
+                }
+                B.onclick = function(){
+                    gameover();
+                }
+                C.onclick = function(){
+                    gameover();
+                }
+                D.onclick = function(){
+                    qpick();
+                }
+            }
+            function q10(){
+                x.innerHTML = (10-correctans) + ": How many megabytes in a gigabyte?";
+                A.innerHTML = "1000";
+                B.innerHTML = "1024";
+                C.innerHTML = "1032";
+                D.innerHTML = "1048";
+                picture.setAttribute("src", "binary.jpg");
+                picture.setAttribute("width", "100");
+                picture.setAttribute("height", "100");
+                A.onclick = function(){
+                    gameover();
+                }
+                B.onclick = function(){
+                    qpick();
+                }
+                C.onclick = function(){
+                    gameover();
+                }
+                D.onclick = function(){
+                    gameover();
+                }
+            }
+            
+            document.getElementById("startgame").onclick = function(){
+                clearInterval(countdown);
+                document.getElementById("displaytime").style.color = "green";
+                correctans = -1;
+                questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+                timeleft = length;
+                document.getElementById("displaytime").innerHTML = timeleft/1000;
+                countdown = setInterval(function(){
+                    timeleft = timeleft - 1000;
+                    document.getElementById("displaytime").innerHTML = timeleft/1000;
+                    if (timeleft == 30000) {
+                        document.getElementById("displaytime").style.color = "goldenrod";
+                    } else if (timeleft == 10000) {
+                        document.getElementById("displaytime").style.color = "red";
+                    }
+                    if (timeleft == 0) {
+                        clearInterval(countdown);
+                        timegameover();
+                    }
+                }, 1000);
+                qpick();
+                
+                
+                
+                
+                
+            }
+            
+        </script>
+    </body>
+
+</html>
